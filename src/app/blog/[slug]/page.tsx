@@ -9,6 +9,8 @@ import Link from "next/link";
 import { Suspense, memo } from "react";
 import { CodeBlock } from "@/components/code-block";
 
+export const runtime = "nodejs";
+
 export default async function BlogPost({
   params,
 }: {
