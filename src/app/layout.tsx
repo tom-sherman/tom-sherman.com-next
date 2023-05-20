@@ -3,9 +3,7 @@ import "@picocss/pico/css/pico.min.css";
 import styles from "./root.module.css";
 import { Analytics } from "@vercel/analytics/react";
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge";
 
 export const metadata = {
   title: "Create Next App",

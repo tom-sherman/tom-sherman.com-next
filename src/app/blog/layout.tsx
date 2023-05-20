@@ -3,9 +3,7 @@ import Link from "next/link";
 import styles from "./layout.module.css";
 import clsx from "clsx";
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge";
 
 export const metadata = {
   title: "Blog | Tom Sherman",
