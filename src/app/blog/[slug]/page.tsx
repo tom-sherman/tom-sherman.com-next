@@ -6,7 +6,7 @@ import readingTime from "reading-time";
 import Markdown from "@/components/markdown";
 import { ChipList, Chip } from "@/components/chip/chip";
 import Link from "next/link";
-import { memo } from "react";
+import { Suspense, memo } from "react";
 import { CodeBlock } from "@/components/code-block";
 
 export default async function BlogPost({
@@ -74,16 +74,22 @@ interface Preprops {
 
 const markdownComponents = {
   pre: memo(function Pre({ children, "data-language": language }: Preprops) {
+    const fallback = (
+      <pre>
+        <code>{children}</code>
+      </pre>
+    );
+
     if (!language) {
-      return (
-        <pre>
-          <code>{children}</code>
-        </pre>
-      );
+      return fallback;
     }
 
     // TODO: light/dark theme depending on user preference
-    // @ts-expect-error server components
-    return <CodeBlock code={children} lang={language} theme="github-dark" />;
+    return (
+      <Suspense fallback={fallback}>
+        {/* @ts-expect-error server components */}
+        <CodeBlock code={children} lang={language} theme="github-dark" />
+      </Suspense>
+    );
   }),
 };
