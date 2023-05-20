@@ -53,9 +53,11 @@ export default async function BlogPost({
 
       <ChipList>
         {post.tags.map((tag) => (
-          <Link key={tag} href={`/blog/tags/${tag}`}>
-            <Chip>{tag}</Chip>
-          </Link>
+          <li key={tag}>
+            <Link href={`/blog/tags/${tag}`}>
+              <Chip>{tag}</Chip>
+            </Link>
+          </li>
         ))}
       </ChipList>
     </>

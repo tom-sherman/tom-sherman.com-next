@@ -1,10 +1,13 @@
 .chipList {
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
   padding: 0;
   margin: 0;
   gap: 0.5em;
+}
+
+.chipList > li {
+  list-style: none;
 }
 
 .chip {
