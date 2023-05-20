@@ -170,6 +170,9 @@ export class VercelKvBlogData implements BlogData {
   }
 
   async deletePostsByPath(paths: string[]) {
+    if (paths.length === 0) {
+      return;
+    }
     await this.#kv.del(...paths);
   }
 
