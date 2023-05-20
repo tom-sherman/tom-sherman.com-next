@@ -1,9 +1,8 @@
 import "server-only";
 import { z } from "zod";
 import type { request as githubRequest } from "@octokit/request";
-import { type VercelKV, createClient as createKvClient } from "@vercel/kv";
+import { type VercelKV, kv } from "@vercel/kv";
 import { cache } from "react";
-import { BLOG_POSTS_KV_TOKEN, BLOG_POSTS_KV_URL } from "./server-constants";
 
 const frontMatterTagsSchema = z.array(z.string());
 const frontMatterStatusSchema = z.union([
@@ -169,15 +168,7 @@ export class VercelKvBlogData implements BlogData {
   }
 }
 
-export const blog = cache(
-  () =>
-    new VercelKvBlogData(
-      createKvClient({
-        url: BLOG_POSTS_KV_URL,
-        token: BLOG_POSTS_KV_TOKEN,
-      })
-    )
-);
+export const blog = cache(() => new VercelKvBlogData(kv));
 
 type ContentsApiResponse = Awaited<
   ReturnType<typeof githubRequest<"GET /repos/{owner}/{repo}/contents/{path}">>

@@ -1,12 +1,7 @@
 import { verify } from "@octokit/webhooks-methods";
 import { request as githubRequest } from "@octokit/request";
-import { VercelKV, createClient as createKvClient } from "@vercel/kv";
-import {
-  BLOG_POSTS_KV_TOKEN,
-  BLOG_POSTS_KV_URL,
-  BLOG_WEBHOOK_SECRET,
-  GITHUB_TOKEN,
-} from "@/server-constants";
+import { kv } from "@vercel/kv";
+import { BLOG_WEBHOOK_SECRET, GITHUB_TOKEN } from "@/server-constants";
 import { z } from "zod";
 import { GitHubBlogData, VercelKvBlogData } from "@/blog-data";
 
@@ -31,12 +26,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const changes = flattenChanges(parseResult.data);
 
-  const db = new VercelKvBlogData(
-    createKvClient({
-      url: BLOG_POSTS_KV_URL,
-      token: BLOG_POSTS_KV_TOKEN,
-    })
-  );
+  const db = new VercelKvBlogData(kv);
   const github = new GitHubBlogData(
     githubRequest.defaults({
       headers: {
