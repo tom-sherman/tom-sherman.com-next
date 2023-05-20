@@ -6,6 +6,8 @@ import Link from "next/link";
 import { listAllPosts } from "@/blog-data";
 import { ErrorBoundary } from "react-error-boundary";
 
+export const runtime = "edge";
+
 export default function Home() {
   return (
     <>
