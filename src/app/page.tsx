@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./home.module.css";
 import Link from "next/link";
-import { blog } from "@/blog-data";
+import { listAllPosts } from "@/blog-data";
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Home() {
@@ -95,7 +95,7 @@ function Project({ name, url, description }: ProjectProps) {
 }
 
 async function RecentBlogPosts() {
-  const posts = (await blog().listAllPosts()).slice(0, 3);
+  const posts = (await listAllPosts()).slice(0, 3);
 
   return (
     <div className={clsx("grid", styles.recentPosts)}>

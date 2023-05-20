@@ -147,8 +147,14 @@ export class VercelKvBlogData implements BlogData {
     this.#kv = kv;
   }
 
-  getPost(slug: string): Promise<BlogPost | null> {
-    throw new Error("Method not implemented.");
+  async getPost(slug: string): Promise<BlogPost | null> {
+    const post = await this.#kv.get(`posts/${slug}`);
+
+    if (!post || frontMatterSchema.safeParse(post).success === false) {
+      return null;
+    }
+
+    return post as BlogPost;
   }
 
   async listAllPosts(): Promise<PostMeta[]> {
@@ -196,6 +202,7 @@ export class VercelKvBlogData implements BlogData {
 }
 
 export const blog = cache(() => new VercelKvBlogData(kv));
+export const listAllPosts = cache(() => blog().listAllPosts());
 
 type ContentsApiResponse = Awaited<
   ReturnType<typeof githubRequest<"GET /repos/{owner}/{repo}/contents/{path}">>

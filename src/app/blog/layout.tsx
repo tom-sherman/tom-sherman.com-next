@@ -1,5 +1,7 @@
 import { Me } from "@/components/about-me/about-me";
 import Link from "next/link";
+import styles from "./layout.module.css";
+import clsx from "clsx";
 
 export const metadata = {
   title: "Blog | Tom Sherman",
@@ -12,7 +14,7 @@ export default function BlogLayout({
 }) {
   return (
     <>
-      <nav className="container blog-nav">
+      <nav className={clsx("container", styles.blogNav)}>
         <ul>
           <li>
             <strong>Tom's blog</strong>
@@ -31,7 +33,7 @@ export default function BlogLayout({
           </li>
         </ul>
       </nav>
-      <main className="post-content">{children}</main>
+      <main className={styles.postContent}>{children}</main>
       <section className="container">
         <article>
           <Me />
