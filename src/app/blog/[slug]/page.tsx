@@ -6,6 +6,8 @@ import readingTime from "reading-time";
 import Markdown from "@/components/markdown";
 import { ChipList, Chip } from "@/components/chip/chip";
 import Link from "next/link";
+import { memo } from "react";
+import { CodeBlock } from "@/components/code-block";
 
 export default async function BlogPost({
   params,
@@ -49,7 +51,8 @@ export default async function BlogPost({
         }).format(createdAt)}{" "}
         - {readingTime(post.content).text}
       </small>
-      <Markdown content={post.content} />
+
+      <Markdown content={post.content} components={markdownComponents} />
 
       <ChipList>
         {post.tags.map((tag) => (
@@ -63,3 +66,24 @@ export default async function BlogPost({
     </>
   );
 }
+
+interface Preprops {
+  children: string;
+  "data-language"?: string;
+}
+
+const markdownComponents = {
+  pre: memo(function Pre({ children, "data-language": language }: Preprops) {
+    if (!language) {
+      return (
+        <pre>
+          <code>{children}</code>
+        </pre>
+      );
+    }
+
+    // TODO: light/dark theme depending on user preference
+    // @ts-expect-error server components
+    return <CodeBlock code={children} lang={language} theme="github-dark" />;
+  }),
+};

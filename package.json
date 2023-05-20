@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@code-hike/lighter": "^0.6.6",
     "@markdoc/markdoc": "^0.2.2",
     "@octokit/request": "^6.2.3",
     "@octokit/webhooks-methods": "^3.0.2",
