@@ -1,6 +1,7 @@
 import "./globals.css";
 import "@picocss/pico/css/pico.min.css";
 import styles from "./root.module.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Create Next App",
@@ -21,11 +22,7 @@ export default function RootLayout({
         <footer className="container">
           ⚛️ Copyright Tom Sherman, {new Date().getFullYear()}.
         </footer>
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "d0eac948e1eb456d9f75864ad04f1969"}'
-        />
+        <Analytics />
       </body>
     </html>
   );
