@@ -162,7 +162,7 @@ export class VercelKvBlogData implements BlogData {
         }
 
         return {
-          ...frontMatterSchema.parse(JSON.parse(post as any)),
+          ...frontMatterSchema.parse(post),
           path: key,
         };
       })
