@@ -4,6 +4,8 @@ import { ChipList } from "@/components/chip/chip";
 import { PostList } from "@/components/post-list";
 import Link from "next/link";
 
+export const runtime = "edge";
+
 export const metadata = {
   description: "Tom Sherman's mostly incoherent ramblings.",
 };
