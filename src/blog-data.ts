@@ -149,8 +149,24 @@ export class VercelKvBlogData implements BlogData {
   getPost(slug: string): Promise<BlogPost | null> {
     throw new Error("Method not implemented.");
   }
-  listAllPosts(): Promise<PostMeta[]> {
-    throw new Error("Method not implemented.");
+
+  async listAllPosts(): Promise<PostMeta[]> {
+    const keys = await this.#kv.keys("*");
+
+    return Promise.all(
+      keys.map(async (key) => {
+        const post = await this.#kv.get(key);
+
+        if (post == null) {
+          throw new Error("Failed to get post");
+        }
+
+        return {
+          ...frontMatterSchema.parse(JSON.parse(post as any)),
+          path: key,
+        };
+      })
+    );
   }
 
   async deletePostsByPath(paths: string[]) {
