@@ -1,0 +1,77 @@
+diff --git a/dist-node/index.js b/dist-node/index.js
+index 11ac3f42bb6d870639bf4396d542c61bb2b2de75..3698084b18d01b0fc9c9f0e3aab3099a66e2fe6c 100644
+--- a/dist-node/index.js
++++ b/dist-node/index.js
+@@ -7,7 +7,6 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
+ var endpoint = require('@octokit/endpoint');
+ var universalUserAgent = require('universal-user-agent');
+ var isPlainObject = require('is-plain-object');
+-var nodeFetch = _interopDefault(require('node-fetch'));
+ var requestError = require('@octokit/request-error');
+ 
+ const VERSION = "6.2.3";
+@@ -24,7 +23,7 @@ function fetchWrapper(requestOptions) {
+   let headers = {};
+   let status;
+   let url;
+-  const fetch = requestOptions.request && requestOptions.request.fetch || globalThis.fetch || /* istanbul ignore next */nodeFetch;
++  const fetch = requestOptions.request && requestOptions.request.fetch || globalThis.fetch;
+   return fetch(requestOptions.url, Object.assign({
+     method: requestOptions.method,
+     body: requestOptions.body,
+diff --git a/dist-src/fetch-wrapper.js b/dist-src/fetch-wrapper.js
+index 223307aaad3529c339f5a27d643eb3aa34157e70..62251920e6781c50d591dfa659cf072f8a417fdb 100644
+--- a/dist-src/fetch-wrapper.js
++++ b/dist-src/fetch-wrapper.js
+@@ -1,5 +1,4 @@
+ import { isPlainObject } from "is-plain-object";
+-import nodeFetch from "node-fetch";
+ import { RequestError } from "@octokit/request-error";
+ import getBuffer from "./get-buffer-response";
+ export default function fetchWrapper(requestOptions) {
+@@ -14,14 +13,13 @@ export default function fetchWrapper(requestOptions) {
+     let status;
+     let url;
+     const fetch = (requestOptions.request && requestOptions.request.fetch) ||
+-        globalThis.fetch ||
+-        /* istanbul ignore next */ nodeFetch;
++        globalThis.fetch;
+     return fetch(requestOptions.url, Object.assign({
+         method: requestOptions.method,
+         body: requestOptions.body,
+         headers: requestOptions.headers,
+         redirect: requestOptions.redirect,
+-    }, 
++    },
+     // `requestOptions.request.agent` type is incompatible
+     // see https://github.com/octokit/types.ts/pull/264
+     requestOptions.request))
+diff --git a/dist-web/index.js b/dist-web/index.js
+index bf549a453e90ec8e4003879965234dfbecd0c23a..1d72391a635e77187b950b9c65e2f7e25f2325c7 100644
+--- a/dist-web/index.js
++++ b/dist-web/index.js
+@@ -1,7 +1,6 @@
+ import { endpoint } from '@octokit/endpoint';
+ import { getUserAgent } from 'universal-user-agent';
+ import { isPlainObject } from 'is-plain-object';
+-import nodeFetch from 'node-fetch';
+ import { RequestError } from '@octokit/request-error';
+ 
+ const VERSION = "6.2.3";
+@@ -22,14 +21,13 @@ function fetchWrapper(requestOptions) {
+     let status;
+     let url;
+     const fetch = (requestOptions.request && requestOptions.request.fetch) ||
+-        globalThis.fetch ||
+-        /* istanbul ignore next */ nodeFetch;
++        globalThis.fetch;
+     return fetch(requestOptions.url, Object.assign({
+         method: requestOptions.method,
+         body: requestOptions.body,
+         headers: requestOptions.headers,
+         redirect: requestOptions.redirect,
+-    }, 
++    },
+     // `requestOptions.request.agent` type is incompatible
+     // see https://github.com/octokit/types.ts/pull/264
+     requestOptions.request))

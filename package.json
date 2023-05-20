@@ -31,7 +31,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "react-error-boundary@4.0.4": "patches/react-error-boundary@4.0.4.patch"
+      "react-error-boundary@4.0.4": "patches/react-error-boundary@4.0.4.patch",
+      "@octokit/request@6.2.3": "patches/@octokit__request@6.2.3.patch"
     }
   }
 }

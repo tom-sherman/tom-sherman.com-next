@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 patchedDependencies:
+  '@octokit/request@6.2.3':
+    hash: a3vwix7zairwlmg5xleodrmqba
+    path: patches/@octokit__request@6.2.3.patch
   react-error-boundary@4.0.4:
     hash: ztcmizheocfd6p2qb3a7uknz54
     path: patches/react-error-boundary@4.0.4.patch
@@ -8,7 +11,7 @@ patchedDependencies:
 dependencies:
   '@octokit/request':
     specifier: ^6.2.3
-    version: 6.2.3
+    version: 6.2.3(patch_hash=a3vwix7zairwlmg5xleodrmqba)
   '@octokit/webhooks-methods':
     specifier: ^3.0.2
     version: 3.0.2
@@ -263,7 +266,7 @@ packages:
       once: 1.4.0
     dev: false
 
-  /@octokit/request@6.2.3:
+  /@octokit/request@6.2.3(patch_hash=a3vwix7zairwlmg5xleodrmqba):
     resolution: {integrity: sha512-TNAodj5yNzrrZ/VxP+H5HiYaZep0H3GU0O7PaF+fhDrt8FPrnkei9Aal/txsN/1P7V3CPiThG0tIvpPDYUsyAA==}
     engines: {node: '>= 14'}
     dependencies:
@@ -276,6 +279,7 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: false
+    patched: true
 
   /@octokit/types@9.2.1:
     resolution: {integrity: sha512-Vx4keMiD/CAiwVFasLcH0xBSVbKIHebIZke9i7ZbUWGNN4vJFWSYH6Nvga7UY9NIJCGa6x3QG849XTbi5wYmkA==}
