@@ -18,6 +18,7 @@ const frontMatterSchema = z.object({
   status: frontMatterStatusSchema.default("published"),
   description: z
     .string()
+    .nullable()
     .optional()
     .transform((value) => value ?? null),
 });
