@@ -154,7 +154,7 @@ export class VercelKvBlogData implements BlogData {
   async listAllPosts(): Promise<PostMeta[]> {
     const keys = await this.#kv.keys("*");
 
-    return Promise.all(
+    const posts = await Promise.all(
       keys.map(async (key) => {
         const post = await this.#kv.get(key);
 
@@ -168,6 +168,13 @@ export class VercelKvBlogData implements BlogData {
         };
       })
     );
+
+    return posts
+      .filter((post) => post.status === "published")
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
   }
 
   async deletePostsByPath(paths: string[]) {
