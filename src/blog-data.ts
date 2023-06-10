@@ -12,9 +12,12 @@ const github = githubRequest.defaults({
 export async function listAllPosts() {
   let data = await getContents();
 
-  return (
-    await Promise.all(data.map((item) => getPostByPath(item.path)))
-  ).filter((post) => post.status === "published");
+  return (await Promise.all(data.map((item) => getPostByPath(item.path))))
+    .filter((post) => post.status === "published")
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
 }
 
 export async function getPostByPath(path: string) {
