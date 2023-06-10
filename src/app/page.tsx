@@ -5,6 +5,35 @@ import styles from "./home.module.css";
 import Link from "next/link";
 import { ErrorBoundary } from "react-error-boundary";
 import { listAllPosts } from "@/blog-data";
+import type { Metadata } from "next";
+import { MASTODON_URL } from "@/constants";
+import meImg from "@/components/about-me/me.jpg";
+
+export const metadata: Metadata = {
+  title: "Tom Sherman",
+  description: "Tom Sherman is a Senior Software Engineer @ OVO",
+  viewport: "width=device-width, initial-scale=1",
+  openGraph: {
+    siteName: "Tom Sherman | Software Engineer",
+    title: "Tom Sherman | Software Engineer",
+    description: "Tom Sherman is a Senior Software Engineer @ OVO",
+    images: meImg as any,
+  },
+  twitter: {
+    site: "@tomus_sherman",
+    title: "Tom Sherman",
+    card: "summary",
+    description: "Twiddling bits, suspending views, managing state.",
+    images: meImg as any,
+  },
+  verification: {
+    me: MASTODON_URL,
+  },
+  themeColor: "#9b4dca",
+  other: {
+    "msapplication-TileColor": "#9b4dca",
+  },
+};
 
 export default function Home() {
   return (

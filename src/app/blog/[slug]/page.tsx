@@ -31,8 +31,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
+  const imgUrl = new URL(
+    "https://og-image-worker.tomsherman.workers.dev/img/og-blog"
+  );
+  imgUrl.searchParams.set("title", post.title);
+
   return {
     title: post.title,
+    description: post.description ?? undefined,
+    authors: {
+      name: "Tom Sherman",
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description ?? undefined,
+      images: imgUrl.toString(),
+    },
+    twitter: {
+      title: post.title,
+      description: post.description ?? undefined,
+      images: imgUrl.toString(),
+      card: "summary_large_image",
+    },
   };
 }
 
