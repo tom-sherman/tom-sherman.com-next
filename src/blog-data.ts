@@ -10,7 +10,8 @@ const github = githubRequest.defaults({
 });
 
 export async function listAllPosts() {
-  const data = await getContents();
+  let data = await getContents();
+
   return (
     await Promise.all(data.map((item) => getPostByPath(item.path)))
   ).filter((post) => post.status === "published");

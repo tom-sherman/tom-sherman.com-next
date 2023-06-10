@@ -4,8 +4,7 @@ import clsx from "clsx";
 import styles from "./home.module.css";
 import Link from "next/link";
 import { ErrorBoundary } from "react-error-boundary";
-
-export const runtime = "edge";
+import { listAllPosts } from "@/blog-data";
 
 export default function Home() {
   return (
@@ -100,7 +99,7 @@ async function RecentBlogPosts() {
   return (
     <div className={clsx("grid", styles.recentPosts)}>
       {posts.map((post) => (
-        <article key={post.path}>
+        <article key={post.slug}>
           <header>{post.createdAt}</header>
           <Link href={`/blog/${post.slug}`}>
             {/* <PostTitle as="h3" title={post.title} /> */}
