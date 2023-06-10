@@ -100,7 +100,11 @@ async function RecentBlogPosts() {
     <div className={clsx("grid", styles.recentPosts)}>
       {posts.map((post) => (
         <article key={post.slug}>
-          <header>{post.createdAt}</header>
+          <header>
+            {new Intl.DateTimeFormat("en-gb", {
+              dateStyle: "long",
+            }).format(new Date(post.createdAt))}
+          </header>
           <Link href={`/blog/${post.slug}`}>
             <h3>{post.title}</h3>
           </Link>
