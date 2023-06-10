@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const slug = (await getPathSlugMappings()).pathToSlug.get(
       `posts/${params.slug}`
     );
-    console.log("slug", slug);
+
     if (slug) {
       redirect(`/blog/${slug}`);
     }
-    notFound();
+    return {};
   }
 
   return {
