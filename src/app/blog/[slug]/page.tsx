@@ -11,10 +11,7 @@ import type { Metadata } from "next";
 async function getPost(slug: string) {
   const { slugToPath } = await getPathSlugMappings();
   const path = slugToPath.get(slug);
-  if (!path) {
-    notFound();
-  }
-  return getPostByPath(path);
+  return path ? await getPostByPath(path) : null;
 }
 
 interface Props {
@@ -23,6 +20,16 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(params.slug);
+  if (!post) {
+    const slug = (await getPathSlugMappings()).pathToSlug.get(
+      `posts/${params.slug}`
+    );
+    console.log("slug", slug);
+    if (slug) {
+      redirect(`/blog/${slug}`);
+    }
+    notFound();
+  }
 
   return {
     title: post.title,
@@ -33,10 +40,6 @@ export default async function BlogPost({ params }: Props) {
   const post = await getPost(params.slug);
 
   if (!post) {
-    const slug = (await getPathSlugMappings()).pathToSlug.get(params.slug);
-    if (slug) {
-      redirect(`/blog/${slug}`);
-    }
     notFound();
   }
 
