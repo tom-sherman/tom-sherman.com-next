@@ -87,7 +87,6 @@ const markdownComponents = {
     // TODO: light/dark theme depending on user preference
     return (
       <Suspense fallback={fallback}>
-        {/* @ts-expect-error server components */}
         <CodeBlock code={children} lang={language} theme="github-dark" />
       </Suspense>
     );

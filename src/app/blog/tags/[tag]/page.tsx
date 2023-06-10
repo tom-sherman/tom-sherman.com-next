@@ -13,7 +13,6 @@ export default function Tag({
       <h1>
         Posts tagged with <Chip>{params.tag}</Chip>
       </h1>
-      {/* @ts-expect-error server component */}
       <PostList tag={params.tag} />
     </>
   );

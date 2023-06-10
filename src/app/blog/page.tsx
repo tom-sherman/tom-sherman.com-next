@@ -27,7 +27,6 @@ export default async function Blog() {
         or <a href="https://twitter.com/tomus_sherman">DM me</a>!
       </p>
 
-      {/* @ts-expect-error server component */}
       <PostList />
 
       <h2>Tags</h2>

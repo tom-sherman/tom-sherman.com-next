@@ -20,7 +20,6 @@ export default function Home() {
         <Link href="/blog">View all blog posts</Link>
 
         <ErrorBoundary fallback={<p>Oops! Failed to load blog posts</p>}>
-          {/* @ts-expect-error server component */}
           <RecentBlogPosts />
         </ErrorBoundary>
 
