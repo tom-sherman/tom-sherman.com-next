@@ -1,43 +1,42 @@
-import { GitHubBlogData, blog } from "@/blog-data";
+import { getPathSlugMappings, getPostByPath } from "@/blog-data";
 import { notFound, redirect } from "next/navigation";
-import { request as githubRequest } from "@octokit/request";
-import { GITHUB_TOKEN } from "@/server-constants";
 import readingTime from "reading-time";
 import Markdown from "@/components/markdown";
 import { ChipList, Chip } from "@/components/chip/chip";
 import Link from "next/link";
 import { Suspense, memo } from "react";
 import { CodeBlock } from "@/components/code-block";
+import type { Metadata } from "next";
 
-export default async function BlogPost({
-  params,
-}: {
+async function getPost(slug: string) {
+  const { slugToPath } = await getPathSlugMappings();
+  const path = slugToPath.get(slug);
+  if (!path) {
+    notFound();
+  }
+  return getPostByPath(path);
+}
+
+interface Props {
   params: { slug: string };
-}) {
-  const post = await blog().getPost(params.slug);
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPost(params.slug);
+
+  return {
+    title: post.title,
+  };
+}
+
+export default async function BlogPost({ params }: Props) {
+  const post = await getPost(params.slug);
 
   if (!post) {
-    const github = new GitHubBlogData(
-      githubRequest.defaults({
-        headers: {
-          authorization: `token ${GITHUB_TOKEN}`,
-          accept: "application/vnd.github.v3+json",
-        },
-      })
-    );
-
-    try {
-      const resolvedSlug = await github.getPostSlugByPath(
-        `posts/${params.slug}`
-      );
-      redirect(`/blog/${resolvedSlug}`);
-    } catch (e) {
-      if ((e as any)?.status !== 404) {
-        throw e;
-      }
-      console.log(e);
+    const slug = (await getPathSlugMappings()).pathToSlug.get(params.slug);
+    if (slug) {
+      redirect(`/blog/${slug}`);
     }
-
     notFound();
   }
 
