@@ -1,5 +1,4 @@
 import { listAllPosts } from "@/blog-data";
-import Link from "next/link";
 
 interface PostListProps {
   tag?: string;
@@ -23,25 +22,10 @@ export async function PostList({ tag }: PostListProps) {
 
         return (
           <li key={post.slug}>
-            <code>{formattedDate}</code>{" "}
-            <Link href={`/blog/${post.slug}`}>
-              <PostTitle title={post.title} />
-            </Link>
+            <code>{formattedDate}</code> {post.title}
           </li>
         );
       })}
     </ul>
   );
-}
-
-export function PostTitle({
-  title,
-  as: asElement,
-}: {
-  title: string;
-  as?: keyof JSX.IntrinsicElements;
-}) {
-  const Element = asElement ?? "span";
-
-  return <Element>{title}</Element>;
 }

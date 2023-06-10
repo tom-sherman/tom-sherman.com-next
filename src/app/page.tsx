@@ -102,7 +102,6 @@ async function RecentBlogPosts() {
         <article key={post.slug}>
           <header>{post.createdAt}</header>
           <Link href={`/blog/${post.slug}`}>
-            {/* <PostTitle as="h3" title={post.title} /> */}
             <h3>{post.title}</h3>
           </Link>
         </article>
