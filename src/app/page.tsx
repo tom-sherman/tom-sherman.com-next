@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <section className={clsx("container", styles.homeHero)}>
-        <Me />
+        <Me imagePriority />
       </section>
 
       <main className="container">
