@@ -1,4 +1,5 @@
 import { listAllPosts } from "@/blog-data";
+import Link from "next/link";
 
 interface PostListProps {
   tag?: string;
@@ -22,7 +23,9 @@ export async function PostList({ tag }: PostListProps) {
 
         return (
           <li key={post.slug}>
-            <code>{formattedDate}</code> {post.title}
+            <Link href={`/blog/${post.slug}`}>
+              <code>{formattedDate}</code> {post.title}
+            </Link>
           </li>
         );
       })}
