@@ -12,6 +12,10 @@ export async function PostList({ tag }: PostListProps) {
     posts = posts.filter((post) => post.tags.includes(tag));
   }
 
+  if (posts.length === 0) {
+    return <p>No posts found</p>;
+  }
+
   return (
     <ul>
       {posts.map((post) => {
