@@ -9,6 +9,13 @@ const github = githubRequest.defaults({
   },
 });
 
+export async function listAllPosts() {
+  const data = await getContents();
+  return (
+    await Promise.all(data.map((item) => getPostByPath(item.path)))
+  ).filter((post) => post.status === "published");
+}
+
 export async function getPostByPath(path: string) {
   const slug = getSlugFromPath(path); // fail fast if path is invalid
   const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
@@ -37,17 +44,9 @@ export async function getPostByPath(path: string) {
 type ReadonlyMap<K, V> = Omit<Map<K, V>, "set" | "delete">;
 
 export async function getPathSlugMappings() {
-  const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
-    owner: "tom-sherman",
-    repo: "blog",
-    path: "posts",
-  });
+  const data = await getContents();
 
-  if (!Array.isArray(res.data)) {
-    throw new Error("Failed to get contents");
-  }
-
-  const pathToSlugEntries = res.data.map(
+  const pathToSlugEntries = data.map(
     (item) => [item.path, getSlugFromPath(item.path)] as const
   );
 
@@ -57,6 +56,19 @@ export async function getPathSlugMappings() {
       pathToSlugEntries.map(([path, slug]) => [slug, path])
     ) as ReadonlyMap<string, string>,
   };
+}
+
+async function getContents() {
+  const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
+    owner: "tom-sherman",
+    repo: "blog",
+    path: "posts",
+  });
+
+  if (!Array.isArray(res.data)) {
+    throw new Error("Failed to get contents");
+  }
+  return res.data;
 }
 
 function getSlugFromPath(path: string) {

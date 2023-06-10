@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./home.module.css";
 import Link from "next/link";
-import { listAllPosts } from "@/blog-data";
 import { ErrorBoundary } from "react-error-boundary";
 
 export const runtime = "edge";
