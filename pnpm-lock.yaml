@@ -1,9 +1,8 @@
 lockfileVersion: '6.0'
 
-patchedDependencies:
-  '@octokit/request@6.2.3':
-    hash: a3vwix7zairwlmg5xleodrmqba
-    path: patches/@octokit__request@6.2.3.patch
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   '@code-hike/lighter':
@@ -13,8 +12,8 @@ dependencies:
     specifier: ^0.2.2
     version: 0.2.2(@types/react@18.2.10)(react@18.2.0)
   '@octokit/request':
-    specifier: ^6.2.3
-    version: 6.2.3(patch_hash=a3vwix7zairwlmg5xleodrmqba)
+    specifier: ^7.0.0
+    version: 7.0.0
   '@octokit/webhooks-methods':
     specifier: ^3.0.2
     version: 3.0.2
@@ -272,47 +271,43 @@ packages:
       fastq: 1.15.0
     dev: false
 
-  /@octokit/endpoint@7.0.5:
-    resolution: {integrity: sha512-LG4o4HMY1Xoaec87IqQ41TQ+glvIeTKqfjkCEmt5AIwDZJwQeVZFIEYXrYY6yLwK+pAScb9Gj4q+Nz2qSw1roA==}
-    engines: {node: '>= 14'}
+  /@octokit/endpoint@8.0.1:
+    resolution: {integrity: sha512-tVviBdPuf3kcCiIvXYDJg7NAJrkTh8QEnc+UCybknKdEBCjIi7uQbFX3liQrpk1m5PjwC7fUJg08DYZ4F+l1RQ==}
+    engines: {node: '>= 18'}
     dependencies:
-      '@octokit/types': 9.2.1
+      '@octokit/types': 10.0.0
       is-plain-object: 5.0.0
       universal-user-agent: 6.0.0
     dev: false
 
-  /@octokit/openapi-types@17.1.1:
-    resolution: {integrity: sha512-/X7Gh/qWiWaooJmUnYD48SYy72fyrk2ceisOSe89JojK7r0j8YrTwYpDi76kI+c6QiqX1KSgdoBTMJvktsDkYw==}
+  /@octokit/openapi-types@18.0.0:
+    resolution: {integrity: sha512-V8GImKs3TeQRxRtXFpG2wl19V7444NIOTDF24AWuIbmNaNYOQMWRbjcGDXV5B+0n887fgDcuMNOmlul+k+oJtw==}
     dev: false
 
-  /@octokit/request-error@3.0.3:
-    resolution: {integrity: sha512-crqw3V5Iy2uOU5Np+8M/YexTlT8zxCfI+qu+LxUB7SZpje4Qmx3mub5DfEKSO8Ylyk0aogi6TYdf6kxzh2BguQ==}
-    engines: {node: '>= 14'}
+  /@octokit/request-error@4.0.2:
+    resolution: {integrity: sha512-uqwUEmZw3x4I9DGYq9fODVAAvcLsPQv97NRycP6syEFu5916M189VnNBW2zANNwqg3OiligNcAey7P0SET843w==}
+    engines: {node: '>= 18'}
     dependencies:
-      '@octokit/types': 9.2.1
+      '@octokit/types': 10.0.0
       deprecation: 2.3.1
       once: 1.4.0
     dev: false
 
-  /@octokit/request@6.2.3(patch_hash=a3vwix7zairwlmg5xleodrmqba):
-    resolution: {integrity: sha512-TNAodj5yNzrrZ/VxP+H5HiYaZep0H3GU0O7PaF+fhDrt8FPrnkei9Aal/txsN/1P7V3CPiThG0tIvpPDYUsyAA==}
-    engines: {node: '>= 14'}
+  /@octokit/request@7.0.0:
+    resolution: {integrity: sha512-iUnS9KDsFWfHLwomq/QZmEja8nQZ9FnkMp58+6qz1AKFIBi+sF6w1HGpimRxmmpstFHHGB3eE0qYjuV1Z/Gc3Q==}
+    engines: {node: '>= 18'}
     dependencies:
-      '@octokit/endpoint': 7.0.5
-      '@octokit/request-error': 3.0.3
-      '@octokit/types': 9.2.1
+      '@octokit/endpoint': 8.0.1
+      '@octokit/request-error': 4.0.2
+      '@octokit/types': 10.0.0
       is-plain-object: 5.0.0
-      node-fetch: 2.6.11
       universal-user-agent: 6.0.0
-    transitivePeerDependencies:
-      - encoding
     dev: false
-    patched: true
 
-  /@octokit/types@9.2.1:
-    resolution: {integrity: sha512-Vx4keMiD/CAiwVFasLcH0xBSVbKIHebIZke9i7ZbUWGNN4vJFWSYH6Nvga7UY9NIJCGa6x3QG849XTbi5wYmkA==}
+  /@octokit/types@10.0.0:
+    resolution: {integrity: sha512-Vm8IddVmhCgU1fxC1eyinpwqzXPEYu0NrYzD3YZjlGjyftdLBTeqNblRC0jmJmgxbJIsQlyogVeGnrNaaMVzIg==}
     dependencies:
-      '@octokit/openapi-types': 17.1.1
+      '@octokit/openapi-types': 18.0.0
     dev: false
 
   /@octokit/webhooks-methods@3.0.2:
@@ -1858,18 +1853,6 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /node-fetch@2.6.11:
-    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: false
-
   /npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
@@ -2388,10 +2371,6 @@ packages:
       is-number: 7.0.0
     dev: false
 
-  /tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: false
-
   /tsconfig-paths@3.14.2:
     resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
     dependencies:
@@ -2467,17 +2446,6 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.0
-    dev: false
-
-  /webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: false
-
-  /whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive@1.0.2:
