@@ -1,6 +1,7 @@
 import { request as githubRequest } from "@octokit/request";
 import { GITHUB_TOKEN } from "./server-constants";
 import { z } from "zod";
+import { cache } from "react";
 
 const github = githubRequest.defaults({
   headers: {
@@ -9,7 +10,7 @@ const github = githubRequest.defaults({
   },
 });
 
-export async function listAllPosts() {
+export const listAllPosts = cache(async () => {
   let data = await getContents();
 
   return (await Promise.all(data.map((item) => getPostByPath(item.path))))
@@ -18,9 +19,9 @@ export async function listAllPosts() {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
-}
+});
 
-export async function getPostByPath(path: string) {
+export const getPostByPath = cache(async (path: string) => {
   const slug = getSlugFromPath(path); // fail fast if path is invalid
   const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
     owner: "tom-sherman",
@@ -43,11 +44,11 @@ export async function getPostByPath(path: string) {
     slug,
     ...fontMatter.attributes,
   };
-}
+});
 
 type ReadonlyMap<K, V> = Omit<Map<K, V>, "set" | "delete">;
 
-export async function getPathSlugMappings() {
+export const getPathSlugMappings = cache(async () => {
   const data = await getContents();
 
   const pathToSlugEntries = data.map(
@@ -60,7 +61,7 @@ export async function getPathSlugMappings() {
       pathToSlugEntries.map(([path, slug]) => [slug, path])
     ) as ReadonlyMap<string, string>,
   };
-}
+});
 
 async function getContents() {
   const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
