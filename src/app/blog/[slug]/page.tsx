@@ -5,8 +5,8 @@ import Markdown from "@/components/markdown";
 import { ChipList, Chip } from "@/components/chip/chip";
 import Link from "next/link";
 import { Suspense, memo } from "react";
-import { CodeBlock } from "@/components/code-block";
 import type { Metadata } from "next";
+import { CodeBlock } from "react-perfect-syntax-highlighter";
 
 async function getPost(slug: string) {
   const { slugToPath } = await getPathSlugMappings();
