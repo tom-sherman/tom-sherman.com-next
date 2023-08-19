@@ -2,10 +2,21 @@ import { listAllPosts } from "@/blog-data";
 import { Chip } from "@/components/chip/chip";
 import { ChipList } from "@/components/chip/chip";
 import { PostList } from "@/components/post-list";
+import { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   description: "Tom Sherman's mostly incoherent ramblings.",
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        {
+          title: "RSS feed for Tom's Blog",
+          url: "/blog/rss.xml",
+        },
+      ],
+    },
+  },
 };
 
 export default async function Blog() {
