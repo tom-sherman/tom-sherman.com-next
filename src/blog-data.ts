@@ -1,14 +1,55 @@
-import { request as githubRequest } from "@octokit/request";
+import { Endpoints } from "@octokit/types";
 import { GITHUB_TOKEN } from "./server-constants";
 import { z } from "zod";
 import { cache } from "react";
 
-const github = githubRequest.defaults({
-  headers: {
-    authorization: `token ${GITHUB_TOKEN}`,
-    accept: "application/vnd.github.v3+json",
-  },
-});
+async function fetchContents(path: string) {
+  const response = await fetch(
+    `https://api.github.com/repos/tom-sherman/blog/contents/${path}`,
+    {
+      headers: {
+        authorization: `token ${GITHUB_TOKEN}`,
+        accept: "application/vnd.github.v3+json",
+      },
+      next: {
+        tags: ["github"],
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch contents", { cause: response });
+  }
+
+  return (await response.json()) as Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"];
+}
+
+async function fetchRawContents(path: string) {
+  const response = await fetch(
+    `https://api.github.com/repos/tom-sherman/blog/contents/${path}`,
+    {
+      headers: {
+        authorization: `token ${GITHUB_TOKEN}`,
+        accept: "application/vnd.github.v3+raw",
+      },
+      next: {
+        tags: ["github"],
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch contents", { cause: response });
+  }
+
+  const result = (await response.json())?.content;
+
+  if (typeof result !== "string") {
+    throw new Error("Failed to fetch contents");
+  }
+
+  return atob(result);
+}
 
 export const listAllPosts = cache(async () => {
   let data = await getContents();
@@ -23,20 +64,8 @@ export const listAllPosts = cache(async () => {
 
 export const getPostByPath = cache(async (path: string) => {
   const slug = getSlugFromPath(path); // fail fast if path is invalid
-  const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
-    owner: "tom-sherman",
-    repo: "blog",
-    path,
-    headers: {
-      accept: "application/vnd.github.v3.raw",
-    },
-  });
+  const content = await fetchRawContents(path);
 
-  if (typeof res.data !== "string") {
-    throw new Error("Failed to get contents");
-  }
-
-  const content = res.data as string;
   const fontMatter = parseFrontMatter(content);
 
   return {
@@ -64,16 +93,12 @@ export const getPathSlugMappings = cache(async () => {
 });
 
 async function getContents() {
-  const res = await github(`GET /repos/{owner}/{repo}/contents/{path}`, {
-    owner: "tom-sherman",
-    repo: "blog",
-    path: "posts",
-  });
+  const res = await fetchContents("posts");
 
-  if (!Array.isArray(res.data)) {
+  if (!Array.isArray(res)) {
     throw new Error("Failed to get contents");
   }
-  return res.data;
+  return res;
 }
 
 function getSlugFromPath(path: string) {
