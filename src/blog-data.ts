@@ -11,9 +11,6 @@ async function fetchContents(path: string) {
         authorization: `token ${GITHUB_TOKEN}`,
         accept: "application/vnd.github.v3+json",
       },
-      next: {
-        tags: ["github"],
-      },
     }
   );
 
@@ -31,9 +28,6 @@ async function fetchRawContents(path: string) {
       headers: {
         authorization: `token ${GITHUB_TOKEN}`,
         accept: "application/vnd.github.v3+raw",
-      },
-      next: {
-        tags: ["github"],
       },
     }
   );
