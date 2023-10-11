@@ -6,3 +6,12 @@ code,
 kbd {
   padding: 0.25rem 0.5rem;
 }
+
+.tweet button {
+  padding: 0;
+  margin: 0;
+}
+
+.tweet article {
+  margin: 0;
+}

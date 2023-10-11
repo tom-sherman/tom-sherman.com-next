@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Suspense, memo } from "react";
 import type { Metadata } from "next";
 import { CodeBlock } from "react-perfect-syntax-highlighter";
+import { Tweet } from "react-tweet";
 
 async function getPost(slug: string) {
   const { slugToPath } = await getPathSlugMappings();
@@ -94,6 +95,9 @@ interface Preprops {
   "data-language"?: string;
 }
 
+const tweetUrlRegex =
+  /https:\/\/twitter\.com\/(?<username>[a-zA-Z0-9_]+)\/status\/(?<id>[0-9]+)/;
+
 const markdownComponents = {
   pre: memo(function Pre({ children, "data-language": language }: Preprops) {
     const fallback = (
@@ -112,5 +116,23 @@ const markdownComponents = {
         <CodeBlock code={children} lang={language} theme="github-dark" />
       </Suspense>
     );
+  }),
+
+  a: memo(function A(
+    props: React.DetailedHTMLProps<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >
+  ) {
+    if (props.children === "#tweet#") {
+      const result = tweetUrlRegex.exec(props.href!);
+      return (
+        <div className="tweet">
+          <Tweet id={result?.groups?.id!} />
+        </div>
+      );
+    }
+
+    return <a {...props} />;
   }),
 };
