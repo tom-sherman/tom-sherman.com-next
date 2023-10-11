@@ -51,8 +51,8 @@ dependencies:
     specifier: ^4.0.9
     version: 4.0.9(react@18.2.0)
   react-perfect-syntax-highlighter:
-    specifier: ^1.1.1
-    version: 1.1.1
+    specifier: ^1.1.2
+    version: 1.1.2
   reading-time:
     specifier: ^1.5.0
     version: 1.5.0
@@ -2095,8 +2095,8 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
-  /react-perfect-syntax-highlighter@1.1.1:
-    resolution: {integrity: sha512-bdqTbcWl8nGKahCQJn/9bzoGSXhMGwH7+ikITgZJPU2eTWGkgqxv+QVDEpTQzl55S3qYpIZSuARtjJTgsvPQaA==}
+  /react-perfect-syntax-highlighter@1.1.2:
+    resolution: {integrity: sha512-qtpJzwHdiwMi/6UWVHAFswWZenAZXBliVVgI7PFiousnGeW/U5OMS0Mw9l/++szjSq3IyBjtOf/LyyoasVUSXQ==}
     dependencies:
       '@code-hike/lighter': 0.6.6
       server-only: 0.0.1
