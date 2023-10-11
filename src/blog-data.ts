@@ -95,7 +95,7 @@ async function getContents() {
   return res;
 }
 
-function getSlugFromPath(path: string) {
+export function getSlugFromPath(path: string) {
   const match = /^posts\/\d+-(.+)\.md$/gi.exec(path)?.[1];
   if (!match) {
     throw new Error(`Failed to get slug from path: ${path}`);
