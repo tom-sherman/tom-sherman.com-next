@@ -127,7 +127,7 @@ const markdownComponents = {
     if (props.children === "#tweet#") {
       const result = tweetUrlRegex.exec(props.href!);
       return (
-        <div className="tweet">
+        <div className="tweet" data-tweet-href={props.href}>
           <Tweet id={result?.groups?.id!} />
         </div>
       );
