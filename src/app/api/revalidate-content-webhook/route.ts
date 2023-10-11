@@ -40,6 +40,8 @@ export async function POST(request: Request) {
 
     revalidatePath(`/blog/${slug}`);
   }
+
+  return new Response("OK");
 }
 
 function pathIsPost(path: string) {
