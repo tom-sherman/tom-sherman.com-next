@@ -60,6 +60,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPost({ params }: Props) {
   const post = await getPost(params.slug);
 
+  console.log(post?.content);
+
   if (!post) {
     notFound();
   }
@@ -130,7 +132,6 @@ const markdownComponents = {
     link: string;
     id: string;
   }) {
-    console.log("rendering tweet", id, link);
     return (
       <div className="tweet" data-tweet-href={link}>
         <Tweet id={id} />
