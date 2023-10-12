@@ -95,9 +95,6 @@ interface Preprops {
   "data-language"?: string;
 }
 
-const tweetUrlRegex =
-  /https:\/\/twitter\.com\/(?<username>[a-zA-Z0-9_]+)\/status\/(?<id>[0-9]+)/;
-
 const makeHeadingComponent = (level: number) =>
   memo(function HeadingWithLevel(props: {
     id: string;
@@ -126,22 +123,19 @@ const markdownComponents = {
     );
   }),
 
-  a: memo(function A(
-    props: React.DetailedHTMLProps<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    >
-  ) {
-    if (props.children === "#tweet#") {
-      const result = tweetUrlRegex.exec(props.href!);
-      return (
-        <div className="tweet" data-tweet-href={props.href}>
-          <Tweet id={result?.groups?.id!} />
-        </div>
-      );
-    }
-
-    return <a {...props} />;
+  Tweet: memo(function TweetComponent({
+    link,
+    id,
+  }: {
+    link: string;
+    id: string;
+  }) {
+    console.log("rendering tweet", id, link);
+    return (
+      <div className="tweet" data-tweet-href={link}>
+        <Tweet id={id} />
+      </div>
+    );
   }),
 
   h1: makeHeadingComponent(1),
