@@ -4,7 +4,7 @@ import readingTime from "reading-time";
 import Markdown from "@/components/markdown";
 import { ChipList, Chip } from "@/components/chip/chip";
 import Link from "next/link";
-import { Suspense, memo } from "react";
+import { Suspense, createElement, memo } from "react";
 import type { Metadata } from "next";
 import { CodeBlock } from "react-perfect-syntax-highlighter";
 import { Tweet } from "react-tweet";
@@ -75,6 +75,7 @@ export default async function BlogPost({ params }: Props) {
         - {readingTime(post.content).text}
       </small>
 
+      <Markdown content={"## foo\n\n## foo"} components={markdownComponents} />
       <Markdown content={post.content} components={markdownComponents} />
 
       <ChipList>
@@ -97,6 +98,14 @@ interface Preprops {
 
 const tweetUrlRegex =
   /https:\/\/twitter\.com\/(?<username>[a-zA-Z0-9_]+)\/status\/(?<id>[0-9]+)/;
+
+const makeHeadingComponent = (level: number) =>
+  memo(function HeadingWithLevel(props: {
+    id: string;
+    children: React.ReactNode;
+  }) {
+    return <Heading level={level} {...props} />;
+  });
 
 const markdownComponents = {
   pre: memo(function Pre({ children, "data-language": language }: Preprops) {
@@ -135,4 +144,24 @@ const markdownComponents = {
 
     return <a {...props} />;
   }),
+
+  h1: makeHeadingComponent(1),
+  h2: makeHeadingComponent(2),
+  h3: makeHeadingComponent(3),
+  h4: makeHeadingComponent(4),
+  h5: makeHeadingComponent(5),
+  h6: makeHeadingComponent(6),
 };
+
+function Heading({
+  level,
+  children,
+  id,
+}: {
+  level: number;
+  children: React.ReactNode;
+  id: string;
+}) {
+  const headingElement = createElement(`h${level}`, { id }, children);
+  return headingElement;
+}
