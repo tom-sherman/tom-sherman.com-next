@@ -22,7 +22,12 @@ export default memo(function Markdown({
   content: string;
 }) {
   const ast = parse(content);
-  const tree = transform(ast, { nodes: { heading: createHeadingSchema() } });
+  const tree = transform(ast, {
+    nodes: { heading: createHeadingSchema() },
+    tags: {
+      tweet: tweetTagConfig,
+    },
+  });
   return render(tree) as any;
 
   function deepRender(value: any): any {
@@ -60,6 +65,26 @@ export default memo(function Markdown({
     );
   }
 });
+
+const tweetUrlRegex =
+  /https:\/\/twitter\.com\/(?<username>[a-zA-Z0-9_]+)\/status\/(?<id>[0-9]+)/;
+const tweetTagConfig: Schema = {
+  render: "Tweet",
+  inline: false,
+  attributes: {
+    link: {
+      type: String,
+      required: true,
+    },
+  },
+  transform(node) {
+    const match = tweetUrlRegex.exec(node.attributes.link);
+    return new Tag(this.render, {
+      link: node.attributes.link,
+      id: match?.groups?.id,
+    });
+  },
+};
 
 function getTextContent(childNodes: RenderableTreeNode[]): string {
   let text = "";
