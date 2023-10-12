@@ -75,7 +75,6 @@ export default async function BlogPost({ params }: Props) {
         - {readingTime(post.content).text}
       </small>
 
-      <Markdown content={"## foo\n\n## foo"} components={markdownComponents} />
       <Markdown content={post.content} components={markdownComponents} />
 
       <ChipList>
