@@ -19,7 +19,7 @@ export async function GET(request: Request) {
             <item>
               <title>${cdata(post.title)}</title>
               <description>${cdata(
-                post.description ?? "A new post on Tom's blog."
+                post.description ?? "A new post on Tom's blog.",
               )}</description>
               <pubDate>${new Intl.DateTimeFormat("fr-CA", {
                 year: "numeric",
@@ -29,7 +29,7 @@ export async function GET(request: Request) {
               <link>${blogUrl}/${post.slug}</link>
               <guid>${blogUrl}/${post.slug}</guid>
             </item>
-          `.trim()
+          `.trim(),
           )
           .join("\n")}
       </channel>
