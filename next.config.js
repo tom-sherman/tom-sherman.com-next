@@ -5,6 +5,7 @@ const nextConfig = {
     {
       source: "/resume",
       destination: "/CV.pdf",
+      permanent: false,
     },
   ],
 };
