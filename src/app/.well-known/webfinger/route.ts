@@ -1,6 +1,6 @@
 const usernameAliases = ["me", "tom", "tomsherman", "mastodon", "social"];
 const resources = usernameAliases.map(
-  (username) => `acct:${username}@tom-sherman.com`
+  (username) => `acct:${username}@tom-sherman.com`,
 );
 
 export function GET(request: Request) {
@@ -47,6 +47,6 @@ export function GET(request: Request) {
       headers: {
         "content-type": "application/jrd+json",
       },
-    }
+    },
   );
 }

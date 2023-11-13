@@ -61,7 +61,7 @@ export default memo(function Markdown({
     return createElement(
       components[name] ?? name,
       Object.keys(attrs).length == 0 ? null : deepRender(attrs),
-      ...children.map(render)
+      ...children.map(render),
     );
   }
 });

@@ -11,7 +11,7 @@ async function fetchContents(path: string) {
         authorization: `token ${GITHUB_TOKEN}`,
         accept: "application/vnd.github.v3+json",
       },
-    }
+    },
   );
 
   if (!response.ok) {
@@ -29,7 +29,7 @@ async function fetchRawContents(path: string) {
         authorization: `token ${GITHUB_TOKEN}`,
         accept: "application/vnd.github.v3+raw",
       },
-    }
+    },
   );
 
   if (!response.ok) {
@@ -52,7 +52,7 @@ export const listAllPosts = cache(async () => {
     .filter((post) => post.status === "published")
     .sort(
       (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
 });
 
@@ -75,13 +75,13 @@ export const getPathSlugMappings = cache(async () => {
   const data = await getContents();
 
   const pathToSlugEntries = data.map(
-    (item) => [item.path, getSlugFromPath(item.path)] as const
+    (item) => [item.path, getSlugFromPath(item.path)] as const,
   );
 
   return {
     pathToSlug: new Map(pathToSlugEntries) as ReadonlyMap<string, string>,
     slugToPath: new Map(
-      pathToSlugEntries.map(([path, slug]) => [slug, path])
+      pathToSlugEntries.map(([path, slug]) => [slug, path]),
     ) as ReadonlyMap<string, string>,
   };
 });
@@ -140,12 +140,12 @@ function parseFrontMatter(input: string) {
 
       if (!key || !value) {
         throw new Error(
-          `Failed to parse front matter at line ${index + 1}: "${line}"`
+          `Failed to parse front matter at line ${index + 1}: "${line}"`,
         );
       }
 
       return [key, JSON.parse(value)];
-    })
+    }),
   );
 
   return {

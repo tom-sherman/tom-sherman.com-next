@@ -78,6 +78,6 @@ const pushEventSchema = z.object({
       added: z.array(z.string()),
       removed: z.array(z.string()),
       modified: z.array(z.string()),
-    })
+    }),
   ),
 });

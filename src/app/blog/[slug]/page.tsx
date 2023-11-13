@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(params.slug);
   if (!post) {
     const slug = (await getPathSlugMappings()).pathToSlug.get(
-      `posts/${params.slug}`
+      `posts/${params.slug}`,
     );
 
     if (slug) {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const imgUrl = new URL(
-    "https://og-image-worker.tomsherman.workers.dev/img/og-blog"
+    "https://og-image-worker.tomsherman.workers.dev/img/og-blog",
   );
   imgUrl.searchParams.set("title", post.title);
 
@@ -59,8 +59,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPost({ params }: Props) {
   const post = await getPost(params.slug);
-
-  console.log(post?.content);
 
   if (!post) {
     notFound();
