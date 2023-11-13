@@ -60,8 +60,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPost({ params }: Props) {
   const post = await getPost(params.slug);
 
-  console.log(post?.content);
-
   if (!post) {
     notFound();
   }
