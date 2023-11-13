@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@markdoc/markdoc':
     specifier: ^0.2.2
-    version: 0.2.2(@types/react@18.2.10)(react@18.2.0)
+    version: 0.2.2(@types/react@18.2.37)(react@18.2.0)
   '@octokit/types':
     specifier: ^12.0.0
     version: 12.0.0
@@ -21,11 +21,11 @@ dependencies:
     specifier: 18.15.13
     version: 18.15.13
   '@types/react':
-    specifier: 18.2.10
-    version: 18.2.10
+    specifier: 18.2.37
+    version: 18.2.37
   '@types/react-dom':
-    specifier: 18.2.4
-    version: 18.2.4
+    specifier: 18.2.15
+    version: 18.2.15
   '@vercel/analytics':
     specifier: ^1.0.2
     version: 1.0.2
@@ -147,7 +147,7 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: false
 
-  /@markdoc/markdoc@0.2.2(@types/react@18.2.10)(react@18.2.0):
+  /@markdoc/markdoc@0.2.2(@types/react@18.2.37)(react@18.2.0):
     resolution: {integrity: sha512-0TiD9jmA5h5znN4lxo7HECAu3WieU5g5vUsfByeucrdR/x88hEilpt16EydFyJwJddQ/3w5HQgW7Ovy62r4cyw==}
     engines: {node: '>=14.7.0'}
     peerDependencies:
@@ -159,7 +159,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.10
+      '@types/react': 18.2.37
       react: 18.2.0
     optionalDependencies:
       '@types/markdown-it': 12.2.3
@@ -349,14 +349,14 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: false
 
-  /@types/react-dom@18.2.4:
-    resolution: {integrity: sha512-G2mHoTMTL4yoydITgOGwWdWMVd8sNgyEP85xVmMKAPUBwQWm9wBPQUmvbeF4V3WBY1P7mmL4BkjQ0SqUpf1snw==}
+  /@types/react-dom@18.2.15:
+    resolution: {integrity: sha512-HWMdW+7r7MR5+PZqJF6YFNSCtjz1T0dsvo/f1BV6HkV+6erD/nA7wd9NM00KVG83zf2nJ7uATPO9ttdIPvi3gg==}
     dependencies:
-      '@types/react': 18.2.10
+      '@types/react': 18.2.37
     dev: false
 
-  /@types/react@18.2.10:
-    resolution: {integrity: sha512-5UTpmDa5L+PgTLXhLPNolv7/Qh+1YQuy4fsh/IahJbvtaLz2g9qX0CKsE0rBQCvn9ymt9NpvZENZwclbLKc3EQ==}
+  /@types/react@18.2.37:
+    resolution: {integrity: sha512-RGAYMi2bhRgEXT3f4B92WTohopH6bIXw05FuGlmJEnv/omEn190+QYEIYxIAuIBdKgboYYdVved2p1AxZVQnaw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
