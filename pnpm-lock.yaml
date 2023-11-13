@@ -51,8 +51,8 @@ dependencies:
     specifier: ^4.0.11
     version: 4.0.11(react@18.2.0)
   react-perfect-syntax-highlighter:
-    specifier: ^1.1.2
-    version: 1.1.2
+    specifier: ^1.2.0
+    version: 1.2.0
   react-tweet:
     specifier: ^3.1.1
     version: 3.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -91,8 +91,10 @@ packages:
       regenerator-runtime: 0.14.0
     dev: false
 
-  /@code-hike/lighter@0.6.7:
-    resolution: {integrity: sha512-NJJ/s5IdemXHf+D6RsCm+eCYPI5BKmJE1yL2+euKFhY5mLhYt3yljHF7ly7E0pu7R9QrY2y0spGLL+SFUOgz6g==}
+  /@code-hike/lighter@0.9.0:
+    resolution: {integrity: sha512-Ty8O6YdLcw32GDGqAQH+w/zVwcwYeTueiagX1BMuioy/fzzM0EjdPlv1Zi+M+om5UnRS1EdFtJRTz3vHtCCS7g==}
+    dependencies:
+      ansi-sequence-parser: 1.1.1
     dev: false
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.38.0):
@@ -461,6 +463,10 @@ packages:
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
+    dev: false
+
+  /ansi-sequence-parser@1.1.1:
+    resolution: {integrity: sha512-vJXt3yiaUL4UU546s3rPXlsry/RnM730G1+HkpKE012AN0sx1eOrxSu95oKDIonskeLTijMgqWZ3uDEe3NFvyg==}
     dev: false
 
   /ansi-styles@4.3.0:
@@ -1951,10 +1957,10 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
-  /react-perfect-syntax-highlighter@1.1.2:
-    resolution: {integrity: sha512-qtpJzwHdiwMi/6UWVHAFswWZenAZXBliVVgI7PFiousnGeW/U5OMS0Mw9l/++szjSq3IyBjtOf/LyyoasVUSXQ==}
+  /react-perfect-syntax-highlighter@1.2.0:
+    resolution: {integrity: sha512-YkLu5m1GgbTuiHrU49l+fCB1qTd2m2yTJ6FSi5cQ9EKWOyaCOLa2cznf0O8AKEgxG/lSlOACucaJ1igcxIRTdA==}
     dependencies:
-      '@code-hike/lighter': 0.6.7
+      '@code-hike/lighter': 0.9.0
       server-only: 0.0.1
     dev: false
 
