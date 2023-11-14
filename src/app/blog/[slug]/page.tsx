@@ -1,4 +1,4 @@
-import { getPathSlugMappings, getPostByPath } from "@/blog-data";
+import { getPathSlugMappings, getPostByPath, listAllPosts } from "@/blog-data";
 import { notFound, redirect } from "next/navigation";
 import readingTime from "reading-time";
 import Markdown from "@/components/markdown";
@@ -13,10 +13,6 @@ async function getPost(slug: string) {
   const { slugToPath } = await getPathSlugMappings();
   const path = slugToPath.get(slug);
   return path ? await getPostByPath(path) : null;
-}
-
-interface Props {
-  params: { slug: string };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -55,6 +51,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
     },
   };
+}
+
+interface Params {
+  slug: string;
+}
+
+interface Props {
+  params: Params;
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+  const posts = await listAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export default async function BlogPost({ params }: Props) {
