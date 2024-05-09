@@ -1,5 +1,6 @@
 import { listAllPosts } from "@/blog-data";
 import Link from "next/link";
+import { Chip } from "./chip/chip";
 
 interface PostListProps {
   tag?: string;
@@ -28,7 +29,13 @@ export async function PostList({ tag }: PostListProps) {
         return (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-              <code>{formattedDate}</code> {post.title}
+              <code>{formattedDate}</code>{" "}
+              {post.status === "draft" ? (
+                <strong>
+                  <Chip>draft</Chip>
+                </strong>
+              ) : null}{" "}
+              {post.title}
             </Link>
           </li>
         );

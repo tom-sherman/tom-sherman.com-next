@@ -8,6 +8,7 @@ import { listAllPosts } from "@/blog-data";
 import type { Metadata } from "next";
 import { MASTODON_URL } from "@/constants";
 import meImg from "@/components/about-me/me.jpg";
+import { Chip } from "@/components/chip/chip";
 
 export const metadata: Metadata = {
   title: "Tom Sherman",
@@ -128,9 +129,14 @@ async function RecentBlogPosts() {
       {posts.map((post) => (
         <article key={post.slug}>
           <header>
+            {post.status === "draft" ? (
+              <strong>
+                <Chip>draft</Chip>
+              </strong>
+            ) : null}{" "}
             {new Intl.DateTimeFormat("en-gb", {
               dateStyle: "long",
-            }).format(new Date(post.createdAt))}
+            }).format(new Date(post.createdAt))}{" "}
           </header>
           <Link href={`/blog/${post.slug}`}>
             <h3>{post.title}</h3>

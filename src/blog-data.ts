@@ -49,7 +49,7 @@ export const listAllPosts = cache(async () => {
   let data = await getContents();
 
   return (await Promise.all(data.map((item) => getPostByPath(item.path))))
-    .filter((post) => post.status === "published")
+    .filter((post) => post.status === "published" || post.status === "draft")
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -108,6 +108,7 @@ const frontMatterTagsSchema = z.array(z.string());
 const frontMatterStatusSchema = z.union([
   z.literal("unlisted"),
   z.literal("published"),
+  z.literal("draft"),
 ]);
 const frontMatterSchema = z.object({
   title: z.string(),

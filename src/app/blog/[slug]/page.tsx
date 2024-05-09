@@ -69,9 +69,15 @@ export default async function BlogPost({ params }: Props) {
   return (
     <>
       <small>
-        {new Intl.DateTimeFormat("en-GB", {
-          dateStyle: "long",
-        }).format(createdAt)}{" "}
+        {post.status === "draft" ? (
+          <>
+            <Chip>draft</Chip>{" "}
+          </>
+        ) : (
+          new Intl.DateTimeFormat("en-GB", {
+            dateStyle: "long",
+          }).format(createdAt)
+        )}{" "}
         - {readingTime(post.content).text}
       </small>
 
