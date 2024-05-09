@@ -78,7 +78,7 @@ export default async function BlogPost({ params }: Props) {
             dateStyle: "long",
           }).format(createdAt)
         )}{" "}
-        - {readingTime(post.content).text}
+        • {readingTime(post.content).text}
       </small>
 
       <Markdown content={post.content} components={markdownComponents} />
