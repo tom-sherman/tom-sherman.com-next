@@ -23,10 +23,7 @@ export default memo(function Markdown({
 }) {
   const ast = parse(content);
   const tree = transform(ast, {
-    nodes: {
-      heading: createHeadingSchema(),
-      text: autoHyperlinkSchema,
-    },
+    nodes: { heading: createHeadingSchema() },
     tags: {
       tweet: tweetTagConfig,
     },
@@ -139,47 +136,3 @@ function createHeadingSchema() {
     },
   } satisfies Schema;
 }
-
-const autoHyperlinkSchema = {
-  transform(node) {
-    if (node.type !== "text") throw new Error("Expected text node");
-    const content = node.attributes.content;
-    if (typeof content !== "string") throw new Error("Expected string");
-
-    let remaining = content;
-    const result: RenderableTreeNode[] = [];
-
-    while (remaining.length) {
-      const httpIdx = remaining.indexOf("http");
-      const nextSpaceIdx = remaining.slice(httpIdx).indexOf(" ");
-
-      let maybeUrl: string | null = null;
-      if (nextSpaceIdx === -1) {
-        maybeUrl = remaining.slice(httpIdx);
-      } else {
-        maybeUrl = remaining.slice(httpIdx, httpIdx + nextSpaceIdx);
-      }
-
-      if (maybeUrl) {
-        try {
-          new URL(maybeUrl);
-        } catch (_) {
-          // invalid URL
-          console.error("Invalid URL:", maybeUrl);
-          maybeUrl = null;
-        }
-      }
-
-      if (maybeUrl) {
-        result.push(remaining.slice(0, httpIdx));
-        result.push(new Tag("a", { href: maybeUrl }, [maybeUrl]));
-        remaining = remaining.slice(httpIdx + maybeUrl.length);
-      } else {
-        result.push(remaining);
-        remaining = "";
-      }
-    }
-
-    return result;
-  },
-} satisfies Schema;
