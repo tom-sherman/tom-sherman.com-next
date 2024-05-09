@@ -12,7 +12,6 @@ import meImg from "@/components/about-me/me.jpg";
 export const metadata: Metadata = {
   title: "Tom Sherman",
   description: "Tom Sherman is a Senior Software Engineer @ OVO",
-  viewport: "width=device-width, initial-scale=1",
   openGraph: {
     siteName: "Tom Sherman | Software Engineer",
     title: "Tom Sherman | Software Engineer",
@@ -29,7 +28,6 @@ export const metadata: Metadata = {
   verification: {
     me: MASTODON_URL,
   },
-  themeColor: "#9b4dca",
   other: {
     "msapplication-TileColor": "#9b4dca",
   },
