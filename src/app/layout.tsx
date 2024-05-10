@@ -21,6 +21,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" />
       </head>
       <body className={styles.body}>
+        Hello
         {children}
         <footer className="container">
           ⚛️ Copyright Tom Sherman, {new Date().getFullYear()}.
