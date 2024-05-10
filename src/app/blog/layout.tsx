@@ -15,6 +15,7 @@ export default function BlogLayout({
   return (
     <>
       <nav className={clsx("container", styles.blogNav)}>
+        hello
         <ul>
           <li>
             <strong>Tom's blog</strong>
