@@ -1,4 +1,5 @@
 export const MASTODON_URL = "https://fosstodon.org/@tomsherman";
+export const BLUESKY_URL = "https://bsky.app/profile/tom-sherman.com";
 export const GITHUB_URL = "https://github.com/tom-sherman";
 export const LINKEDIN_URL =
   "https://www.linkedin.com/in/tom-sherman-2a2aa0136/";

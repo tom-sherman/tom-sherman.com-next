@@ -1,4 +1,4 @@
-import { GITHUB_URL, LINKEDIN_URL, MASTODON_URL } from "@/constants";
+import { GITHUB_URL, LINKEDIN_URL, BLUESKY_URL } from "@/constants";
 import Image from "next/image";
 import meJpg from "./me.jpg";
 import styles from "./about-me.module.css";
@@ -24,8 +24,8 @@ export function Me({ imagePriority }: MeProps) {
         </p>
         <p>
           You can most easily contact me on{" "}
-          <a href={MASTODON_URL} rel="me">
-            Mastodon
+          <a href={BLUESKY_URL} rel="me">
+            Bluesky
           </a>{" "}
           but I'm also on{" "}
           <a href="https://twitter.com/tomus_sherman">Twitter</a>,{" "}
