@@ -2,18 +2,20 @@ import { Chip } from "@/components/chip/chip";
 import { PostList } from "@/components/post-list";
 
 interface Props {
-  params: {
+  params: Promise<{
     tag: string;
-  };
+  }>;
 }
 
-export function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   return {
     title: `Posts tagged with ${params.tag}`,
   };
 }
 
-export default function Tag({ params }: Props) {
+export default async function Tag(props: Props) {
+  const params = await props.params;
   return (
     <>
       <h1>
