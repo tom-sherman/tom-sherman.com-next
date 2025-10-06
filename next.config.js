@@ -7,11 +7,6 @@ const nextConfig = {
       destination: "/CV.pdf",
       permanent: false,
     },
-    {
-      source: "/meet",
-      destination: "https://cal.com/tom-sherman",
-      permanent: false,
-    },
   ],
 };
 

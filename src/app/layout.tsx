@@ -22,9 +22,6 @@ export default function RootLayout({
       </head>
       <body className={styles.body}>
         {children}
-        <footer className="container">
-          ⚛️ Copyright Tom Sherman, {new Date().getFullYear()}.
-        </footer>
         <Analytics />
       </body>
     </html>
