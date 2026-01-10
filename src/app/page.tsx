@@ -43,11 +43,12 @@ export default function Home() {
 
       <main className="container">
         <h2>Recent blog posts</h2>
-        <Link href="/blog">View all blog posts</Link>
 
         <ErrorBoundary fallback={<p>Oops! Failed to load blog posts</p>}>
           <RecentBlogPosts />
         </ErrorBoundary>
+
+        <Link href="/blog">View all blog posts</Link>
 
         <h2>Projects</h2>
 

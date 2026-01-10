@@ -2,8 +2,16 @@
   padding-top: calc(var(--spacing) * 4);
 }
 
-.recentPosts a h3 {
-  color: var(--primary);
-  margin-bottom: 0;
-  font-size: 1.25rem;
+.recentPosts {
+  margin: 2rem 0;
+  & header {
+    display: flex;
+  }
+  & article {
+    margin-bottom: 1rem;
+  }
+  & a h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
 }
