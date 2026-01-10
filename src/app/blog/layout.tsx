@@ -13,7 +13,7 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.container}>
+    <>
       <nav className={clsx("container", styles.blogNav)}>
         <ul>
           <li>
@@ -29,6 +29,6 @@ export default function BlogLayout({
         </ul>
       </nav>
       <main className={styles.postContent}>{children}</main>
-    </div>
+    </>
   );
 }

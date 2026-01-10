@@ -20,7 +20,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" />
       </head>
       <body className={styles.body}>
-        {children}
+        <div className={styles.container}>{children}</div>
         <Analytics />
       </body>
     </html>

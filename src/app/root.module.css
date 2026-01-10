@@ -2,3 +2,8 @@
   margin: 0;
   border-top: 5px solid #9b4dca;
 }
+
+.container {
+  max-width: 800px;
+  padding: 20px;
+}
