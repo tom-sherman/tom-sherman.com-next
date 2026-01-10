@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
@@ -14,15 +14,15 @@
     "@octokit/webhooks-methods": "^3.0.3",
     "@picocss/pico": "^1.5.13",
     "@types/node": "18.15.13",
-    "@types/react": "19.1.2",
-    "@types/react-dom": "19.1.2",
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3",
     "@vercel/analytics": "^1.5.0",
     "clsx": "^1.2.1",
     "eslint": "9.25.1",
-    "eslint-config-next": "15.3.1",
-    "next": "15.3.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "eslint-config-next": "16.1.1",
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-error-boundary": "^4.1.2",
     "react-perfect-syntax-highlighter": "^1.2.0",
     "react-tweet": "^3.2.2",
@@ -35,5 +35,11 @@
   "devDependencies": {
     "prettier": "^3.5.3"
   },
-  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.8",
+      "@types/react-dom": "19.2.3"
+    }
+  }
 }
