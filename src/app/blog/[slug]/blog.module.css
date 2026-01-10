@@ -1,0 +1,7 @@
+.syntax {
+  padding: 0.5rem;
+
+  & code {
+    padding: 0;
+  }
+}

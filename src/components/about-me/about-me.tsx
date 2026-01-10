@@ -10,12 +10,6 @@ interface MeProps {
 export function Me({ imagePriority }: MeProps) {
   return (
     <div className={styles.aboutMe}>
-      <Image
-        style={{ borderRadius: "50%", width: "10rem", height: "10rem" }}
-        src={meJpg}
-        alt="Tom Sherman"
-        priority={imagePriority}
-      />
       <div>
         <h1>Hey 👋 I'm Tom, a Software Engineer from the UK.</h1>
         <p>

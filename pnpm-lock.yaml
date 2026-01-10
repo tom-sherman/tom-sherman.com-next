@@ -24,9 +24,6 @@ importers:
       '@octokit/webhooks-methods':
         specifier: ^3.0.3
         version: 3.0.3
-      '@picocss/pico':
-        specifier: ^1.5.13
-        version: 1.5.13
       '@types/node':
         specifier: 18.15.13
         version: 18.15.13
@@ -501,9 +498,6 @@ packages:
   '@octokit/webhooks-methods@3.0.3':
     resolution: {integrity: sha512-2vM+DCNTJ5vL62O5LagMru6XnYhV4fJslK+5YUkTa6rWlW2S+Tqs1lF9Wr9OGqHfVwpBj3TeztWfVON/eUoW1Q==}
     engines: {node: '>= 14'}
-
-  '@picocss/pico@1.5.13':
-    resolution: {integrity: sha512-BPTeE4JC95+7/vsG9r+6hDR1qUkV4YZ1blI/TI6peOmM94XubjmUDE3jUi4f6DBV6WmCL76ueTct/NerJ33E8A==}
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -2330,8 +2324,6 @@ snapshots:
       '@octokit/openapi-types': 20.0.0
 
   '@octokit/webhooks-methods@3.0.3': {}
-
-  '@picocss/pico@1.5.13': {}
 
   '@rtsao/scc@1.1.0': {}
 

@@ -13,17 +13,9 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className={styles.container}>
       <nav className={clsx("container", styles.blogNav)}>
         <ul>
-          <li>
-            <strong>Tom's blog</strong>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link href="/blog">All posts</Link>
-          </li>
           <li>
             <Link href="/">
               <span role="img" aria-label="Home">
@@ -31,14 +23,12 @@ export default function BlogLayout({
               </span>
             </Link>
           </li>
+          <li>
+            <Link href="/blog">All posts</Link>
+          </li>
         </ul>
       </nav>
       <main className={styles.postContent}>{children}</main>
-      <section className="container">
-        <article>
-          <Me />
-        </article>
-      </section>
-    </>
+    </div>
   );
 }

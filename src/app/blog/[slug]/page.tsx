@@ -8,6 +8,7 @@ import { Suspense, createElement, memo } from "react";
 import type { Metadata } from "next";
 import { CodeBlock } from "react-perfect-syntax-highlighter";
 import { Tweet } from "react-tweet";
+import styles from "./blog.module.css";
 
 async function getPost(slug: string) {
   const { slugToPath } = await getPathSlugMappings();
@@ -126,7 +127,12 @@ const markdownComponents = {
     // TODO: light/dark theme depending on user preference
     return (
       <Suspense fallback={fallback}>
-        <CodeBlock code={children} lang={language} theme="github-dark" />
+        <CodeBlock
+          code={children}
+          lang={language}
+          theme="github-dark"
+          className={styles.syntax}
+        />
       </Suspense>
     );
   }),
