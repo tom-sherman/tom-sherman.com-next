@@ -12,11 +12,11 @@ import { Chip } from "@/components/chip/chip";
 
 export const metadata: Metadata = {
   title: "Tom Sherman",
-  description: "Tom Sherman is a Senior Software Engineer @ OVO",
+  description: "Tom Sherman is a Principal Software Engineer",
   openGraph: {
-    siteName: "Tom Sherman | Software Engineer",
-    title: "Tom Sherman | Software Engineer",
-    description: "Tom Sherman is a Senior Software Engineer @ OVO",
+    siteName: "Tom Sherman | Principal Software Engineer",
+    title: "Tom Sherman | Principal Software Engineer",
+    description: "Tom Sherman is a Principal Software Engineer",
     images: meImg as any,
   },
   twitter: {

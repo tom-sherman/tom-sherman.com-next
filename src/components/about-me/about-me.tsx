@@ -11,10 +11,10 @@ export function Me({ imagePriority }: MeProps) {
   return (
     <div className={styles.aboutMe}>
       <div>
-        <h1>Hey 👋 I'm Tom, a Software Engineer from the UK.</h1>
+        <h1>Hey 👋 I'm Tom, a Principal Software Engineer from the UK.</h1>
         <p>
-          I'm currently a Software Engineer at OVO Energy. I'm super into the
-          web, functional programming, and strong type systems.
+          I'm super into the web, functional programming, and strong type
+          systems.
         </p>
         <p>
           You can most easily contact me on{" "}
